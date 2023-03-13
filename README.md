@@ -221,6 +221,8 @@ Thanks to magnificent work of [Saeed Esmaili](https://github.com/saeedesmaili/ir
 [Melkradar-1398-q2](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/melkradar-1398-q2.pdf?raw=true) - 
 [Melkradar-1399-q3](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/melkradar-1399-q3.pdf?raw=true)
 
+[Nobitex-2022](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/nobitex-2022.pdf?raw=true)
+
 [Novinhub-1398](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/novinhub-1398.pdf?raw=true) - 
 [Novinhub-1399](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/novinhub-1399.pdf?raw=true)
 
