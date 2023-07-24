@@ -63,9 +63,15 @@ Thanks to magnificent work of [Saeed Esmaili](https://github.com/saeedesmaili/ir
 
 ### 1401
 
+[Alibaba](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/alibaba-1401.pdf?raw=true) -
+[CafeBazaar](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/cafebazaar-1401.pdf?raw=true) - 
+[Digikala](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/digikala-1401.pdf?raw=true) -
 [Ilia-CEO](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/ilia-ceo-1401.pdf?raw=true) -
 [Karnameh](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/karnameh-1401.pdf?raw=true) - 
-[Nobitex](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/nobitex-2022.pdf?raw=true)
+[Nobitex](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/nobitex-2022.pdf?raw=true) -
+[Landin](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/landin-1401.pdf?raw=true) -
+[Jabama](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/jabama-1401.pdf?raw=true)
+
 
 ## Lists of Reports
 
@@ -74,7 +80,8 @@ Thanks to magnificent work of [Saeed Esmaili](https://github.com/saeedesmaili/ir
 [1397](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/alibaba-1397.pdf?raw=true) - 
 [1399-q2-q3](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/alibaba-1399-q2-q3.pdf?raw=true) - 
 [1399](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/alibaba-1399.pdf?raw=true) - 
-[1400](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/alibaba-1400.pdf?raw=true)
+[1400](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/alibaba-1400.pdf?raw=true) - 
+[1401](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/alibaba-1401.pdf?raw=true)
 
 ### CafeBazaar
 
@@ -100,7 +107,8 @@ Thanks to magnificent work of [Saeed Esmaili](https://github.com/saeedesmaili/ir
 [1399-q1-q2-kiosk](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/cafebazaar-1399-q1-q2-kiosk.pdf?raw=true) - 
 [1399](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/cafebazaar-1399.pdf?raw=true) - 
 [2019-global](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/cafebazaar-2019-global.pdf?raw=true) - 
-[1400-ads](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/cafebazaar-ads-report-1400.pdf?raw=true)
+[1400-ads](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/cafebazaar-ads-report-1400.pdf?raw=true) - 
+[1401](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/cafebazaar-1401.pdf?raw=true)
 
 ### Digikala
 
@@ -108,7 +116,8 @@ Thanks to magnificent work of [Saeed Esmaili](https://github.com/saeedesmaili/ir
 [1398](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/digikala-1398.pdf?raw=true) - 
 [1399](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/digikala-1399.pdf?raw=true) - 
 [1399-hr](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/digikala-hr-1399.pdf?raw=true) - 
-[digipay-2020](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/digipay-2020.pdf?raw=true)
+[digipay-2020](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/digipay-2020.pdf?raw=true) - 
+[1401](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/digikala-1401.pdf?raw=true)
 
 ### Divar
 
@@ -213,6 +222,8 @@ Thanks to magnificent work of [Saeed Esmaili](https://github.com/saeedesmaili/ir
 
 [Itoll-1400](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/itoll-1400.pdf?raw=true)
 
+[Jabama-1401](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/jabama-1401.pdf?raw=true)
+
 [Jobvision-1399](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/jobvision-1399.pdf?raw=true) - 
 [Jobvision-1400](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/jobvision-1400.pdf?raw=true)
 
@@ -221,6 +232,8 @@ Thanks to magnificent work of [Saeed Esmaili](https://github.com/saeedesmaili/ir
 [Karnameh-1401](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/karnameh-1401.pdf?raw=true)
 
 [Karzar-1399](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/karzar-1399.pdf?raw=true)
+
+[Landin-1401](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/landin-1401.pdf?raw=true)
 
 [Melkradar-1398-q2](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/melkradar-1398-q2.pdf?raw=true) - 
 [Melkradar-1399-q3](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/melkradar-1399-q3.pdf?raw=true)
