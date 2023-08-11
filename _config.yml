@@ -4,3 +4,6 @@ plugins:
 markdown: kramdown
 show_downloads: false
 title: Iranian Businesses Data Reports
+navigation:
+  Product Books: https://t.me/productbooks
+  Product Inbox: https://t.me/productinbox
