@@ -2,4 +2,5 @@ remote_theme: pages-themes/minimal@v0.2.0
 plugins:
 - jekyll-remote-them
 markdown: kramdown
-show_download: false
+show_downloads: false
+title: Iranian Businesses Data Reports
