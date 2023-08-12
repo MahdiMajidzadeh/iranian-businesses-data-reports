@@ -64,13 +64,17 @@ Thanks to magnificent work of [Saeed Esmaili](https://github.com/saeedesmaili/ir
 ### 1401
 
 [Alibaba](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/alibaba-1401.pdf?raw=true) -
+[Baman](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports//baman-1401.pdf?raw=true) - 
 [CafeBazaar](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/cafebazaar-1401.pdf?raw=true) - 
 [Digikala](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/digikala-1401.pdf?raw=true) -
 [Ilia-CEO](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/ilia-ceo-1401.pdf?raw=true) -
 [Karnameh](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/karnameh-1401.pdf?raw=true) - 
 [Nobitex](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/nobitex-2022.pdf?raw=true) -
 [Landin](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/landin-1401.pdf?raw=true) -
-[Jabama](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/jabama-1401.pdf?raw=true)
+[Jabama](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/jabama-1401.pdf?raw=true) - 
+[Postex](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/postex-1401.pdf?raw=true) - 
+[Tazebar](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/tazebar-1401.pdf?raw=true) - 
+[Jobvision](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/jobvision-1402.pdf?raw=true)
 
 
 ## Lists of Reports
@@ -246,6 +250,8 @@ Thanks to magnificent work of [Saeed Esmaili](https://github.com/saeedesmaili/ir
 [Otaghak-1400](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/otaghak-1400.pdf?raw=true)
 
 [Pinket-1399](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/pinket-1399.pdf?raw=true)
+
+[Postex-1401](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/postex-1401.pdf?raw=true)
 
 [RTL-1400](https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/rtl-1400.pdf?raw=true)
 
