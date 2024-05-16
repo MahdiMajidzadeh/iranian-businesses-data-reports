@@ -1,32 +1,37 @@
 body {
-    font-family: sans-serif;
-  }
-  
-  h1 {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.display-3{
+    font-family: "Rubik", sans-serif;
+}
+
+h1 {
     text-align: center;
-  }
-  
-  #tags {
+}
+
+#tags {
     margin-bottom: 20px;
-  }
-  
-  #tags ul {
+}
+
+#tags ul {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     padding: 0;
-  }
-  
-  #tags li {
+}
+
+#tags li {
     margin: 5px;
-  }
-  
-  #articles li {
+}
+
+#articles li {
     margin-bottom: 10px;
-  }
-  
-  #articles a {
+}
+
+#articles a {
     text-decoration: none;
     color: black;
-  }
-  
+}

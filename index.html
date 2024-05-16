@@ -1,24 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Article Links</title>
   <link href="https://unpkg.com/@webpixels/css@1.2.6/dist/index.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <h1>Article Links</h1>
-  <div id="tags"></div>
-  <div class="card">
-    <div class="card-body pb-0">
-      <div class="mb-3 d-flex align-items-center">
-        <h5 class="mb-0">Articles</h5>
-      </div>
-  <ul id="articles"></ul>
 
-</div>
-</div>
+<body>
+  <div class="container">
+    <div class="text-center mt-20 mb-12">
+      <h1 class="display-3 ls-tight"><span
+          class="d-inline-flex text-transparent bg-clip-text gradient-bottom-right start-purple-500 end-indigo-400 position-relative">Iranian</span>
+        Businesses Data Reports</h1>
+      <p class="text-lg font-semibold mt-5 px-lg-32">
+        Archive of reports published by Iranian businesses. From 1392(2014) until now!
+      </p>
+    </div>
+    <div id="tags"></div>
+    <div class="card">
+      <div class="card-body pb-0">
+        <div class="mb-3 d-flex align-items-center">
+          <h5 class="mb-0">Reports</h5>
+        </div>
+        <ul id="articles"></ul>
+      </div>
+    </div>
+    <p class="text-muted text-sm font-semibold text-center my-12">
+      This project is maintained by <a href="https://github.com/MahdiMajidzadeh">MahdiMajidzadeh</a>
+    </p>
+  </div>
   <script src="app.js"></script>
 </body>
+
 </html>
