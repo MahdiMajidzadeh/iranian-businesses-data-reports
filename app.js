@@ -6,7 +6,8 @@ function fetchData() {
   }
   
   // Function to display list of tags
-  function displayTags(data) {
+// Function to display list of tags
+function displayTags(data) {
     const tagList = document.getElementById('tags');
     const ul = document.createElement('ul');
   
@@ -22,17 +23,17 @@ function fetchData() {
   
     ul.appendChild(allTag); // Now append 'All' tag to the ul
   
-    const uniqueTags = new Set();
+    // Extract all tags from articles
+    const allTags = data.flatMap(article => article.tags);
   
-    // Extract unique tags from all articles (excluding 'All')
-    data.forEach(article => article.tags.forEach(tag => {
-      if (tag !== 'All') {
-        uniqueTags.add(tag);
-      }
-    }));
+    // Convert to a Set to remove duplicates (excluding 'All')
+    const uniqueTags = new Set(allTags.filter(tag => tag !== 'All'));
+  
+    // Sort tags alphabetically (case-insensitive)
+    const sortedTags = [...uniqueTags].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
   
     // Create list elements for each tag
-    const tagElements = [...uniqueTags].map(tag => {
+    const tagElements = sortedTags.map(tag => {
       const li = document.createElement('li');
       const tagSpan = document.createElement('span');
       tagSpan.classList.add('btn', 'btn-secondary', 'rounded-pill', 'btn-sm');
@@ -52,6 +53,7 @@ function fetchData() {
   }
   
   
+  
   // Function to display list of articles
   function displayArticles(data) {
     const articleList = document.getElementById('articles');
@@ -69,7 +71,7 @@ function fetchData() {
   
       const articleTitle = document.createElement('a');
       articleTitle.href = '#'; // Replace with actual URL from article data (optional)
-      articleTitle.classList.add('d-block', 'h6', 'font-semibold', 'mb-1');
+      articleTitle.classList.add('d-block', 'h6', 'font-bold', 'mb-1');
       articleTitle.textContent = article.title;
       contentDiv.appendChild(articleTitle);
   
@@ -88,9 +90,10 @@ function fetchData() {
       buttonDiv.classList.add('ms-auto', 'text-end');
   
       const openLinkButton = document.createElement('a');
-      openLinkButton.href = article.url; // Use actual URL from article data
+      openLinkButton.href = "https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/" + article.url + "?raw=true"; // Use actual URL from article data
       openLinkButton.classList.add('btn', 'btn-sm', 'btn-neutral');
-      openLinkButton.textContent = 'See Report';
+      openLinkButton.target = '_blank';
+      openLinkButton.textContent = 'Get Report';
       buttonDiv.appendChild(openLinkButton);
   
       listItem.appendChild(buttonDiv);
