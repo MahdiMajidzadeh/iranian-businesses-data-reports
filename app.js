@@ -74,7 +74,7 @@ function fetchData() {
       contentDiv.appendChild(articleTitle);
   
       const articleTags = document.createElement('span');
-      articleTags.classList.add('d-block', 'text-sm', 'mb-2');
+      articleTags.classList.add('d-block', 'text-sm', 'mb-2', 'text-muted');
       articleTags.textContent = article.tags.join(' - '); // Combine tags with separator
       contentDiv.appendChild(articleTags);
   
@@ -90,7 +90,7 @@ function fetchData() {
       const openLinkButton = document.createElement('a');
       openLinkButton.href = article.url; // Use actual URL from article data
       openLinkButton.classList.add('btn', 'btn-sm', 'btn-neutral');
-      openLinkButton.textContent = 'Open Link';
+      openLinkButton.textContent = 'See Report';
       buttonDiv.appendChild(openLinkButton);
   
       listItem.appendChild(buttonDiv);
