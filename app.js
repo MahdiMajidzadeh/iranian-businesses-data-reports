@@ -57,19 +57,52 @@ function fetchData() {
     const articleList = document.getElementById('articles');
     articleList.innerHTML = ''; // Clear existing articles
   
-    // Create list elements for each article
     const articleElements = data.map(article => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = article.url;
-      a.textContent = article.title;
-      li.appendChild(a);
-      return li;
+      const listGroup = document.createElement('div');
+      listGroup.classList.add('list-group', 'list-group-flush');
+  
+      const listItem = document.createElement('div');
+      listItem.classList.add('list-group-item', 'd-flex', 'align-items-center', 'px-0');
+  
+      const contentDiv = document.createElement('div');
+      contentDiv.classList.add('flex-fill');
+  
+      const articleTitle = document.createElement('a');
+      articleTitle.href = '#'; // Replace with actual URL from article data (optional)
+      articleTitle.classList.add('d-block', 'h6', 'font-semibold', 'mb-1');
+      articleTitle.textContent = article.title;
+      contentDiv.appendChild(articleTitle);
+  
+      const articleTags = document.createElement('span');
+      articleTags.classList.add('d-block', 'text-sm', 'mb-2');
+      articleTags.textContent = article.tags.join(' - '); // Combine tags with separator
+      contentDiv.appendChild(articleTags);
+  
+      const badgesDiv = document.createElement('div');
+      badgesDiv.classList.add('d-flex', 'mx-n1'); // You can add badges here if needed
+  
+      contentDiv.appendChild(badgesDiv);
+      listItem.appendChild(contentDiv);
+  
+      const buttonDiv = document.createElement('div');
+      buttonDiv.classList.add('ms-auto', 'text-end');
+  
+      const openLinkButton = document.createElement('a');
+      openLinkButton.href = article.url; // Use actual URL from article data
+      openLinkButton.classList.add('btn', 'btn-sm', 'btn-neutral');
+      openLinkButton.textContent = 'Open Link';
+      buttonDiv.appendChild(openLinkButton);
+  
+      listItem.appendChild(buttonDiv);
+      listGroup.appendChild(listItem);
+  
+      return listGroup; // Return the entire listGroup element
     });
   
     // Add article elements to the list
     articleList.append(...articleElements);
   }
+  
   
   // Function to filter articles based on tag
   function filterArticles(selectedTag) {
