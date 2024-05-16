@@ -8,10 +8,19 @@ function fetchData() {
   // Function to display list of tags
   function displayTags(data) {
     const tagList = document.getElementById('tags');
+    const ul = document.createElement('ul');
+  
     const allTag = document.createElement('li');
-    allTag.textContent = 'All';
+    const allTagSpan = document.createElement('span');
+    allTagSpan.classList.add('btn', 'btn-secondary', 'rounded-pill', 'btn-sm');
+    allTagSpan.textContent = 'All';
+    allTag.appendChild(allTagSpan);
     allTag.addEventListener('click', () => displayArticles(data)); // Show all links on click
-    tagList.appendChild(allTag);
+    allTag.style.display = 'flex';
+    allTag.style.alignItems = 'center';
+    allTag.style.marginRight = '10px'; // Optional spacing
+  
+    ul.appendChild(allTag); // Now append 'All' tag to the ul
   
     const uniqueTags = new Set();
   
@@ -25,16 +34,23 @@ function fetchData() {
     // Create list elements for each tag
     const tagElements = [...uniqueTags].map(tag => {
       const li = document.createElement('li');
-      li.textContent = tag;
+      const tagSpan = document.createElement('span');
+      tagSpan.classList.add('btn', 'btn-secondary', 'rounded-pill', 'btn-sm');
+      tagSpan.textContent = tag;
+      li.appendChild(tagSpan);
       li.addEventListener('click', () => filterArticles(tag));
+      li.style.display = 'flex';
+      li.style.alignItems = 'center';
       return li;
     });
   
-    // Add tag elements to the list
-    const ul = document.createElement('ul');
+    // Add regular tag elements to the list
     ul.append(...tagElements);
+  
+    // Finally, append the entire ul to the #tags element
     tagList.appendChild(ul);
   }
+  
   
   // Function to display list of articles
   function displayArticles(data) {
