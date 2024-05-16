@@ -1,0 +1,18 @@
+[
+    {
+      "title": "Title of Article One",
+      "url": "https://example.com/article-one",
+      "tags": ["tag1", "tag2"]
+    },
+    {
+      "title": "Title of Article Two",
+      "url": "https://example.com/article-two",
+      "tags": ["tag3", "tag1"]
+    },
+    {
+      "title": "Title of Article Three",
+      "url": "https://example.com/article-three",
+      "tags": ["tag2", "tag4"]
+    }
+  ]
+  
