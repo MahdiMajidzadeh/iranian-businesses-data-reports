@@ -64,7 +64,7 @@ function displayTags(data) {
       listGroup.classList.add('list-group', 'list-group-flush');
   
       const listItem = document.createElement('div');
-      listItem.classList.add('list-group-item', 'd-flex', 'align-items-center', 'px-0');
+      listItem.classList.add('list-group-item', 'd-flex', 'flex-colum', 'align-items-center', 'px-0');
   
       const contentDiv = document.createElement('div');
       contentDiv.classList.add('flex-fill');
@@ -91,9 +91,9 @@ function displayTags(data) {
   
       const openLinkButton = document.createElement('a');
       openLinkButton.href = "https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/" + article.url + "?raw=true"; // Use actual URL from article data
-      openLinkButton.classList.add('btn', 'btn-sm', 'btn-neutral');
+      openLinkButton.classList.add('btn', 'btn-sm', 'btn-neutral', 'ms-5');
       openLinkButton.target = '_blank';
-      openLinkButton.textContent = 'Get Report';
+      openLinkButton.textContent = 'Get';
       buttonDiv.appendChild(openLinkButton);
   
       listItem.appendChild(buttonDiv);
