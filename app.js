@@ -18,6 +18,7 @@ async function loadData() {
       // Display tags
       tags.forEach(tag => {
           const tagElement = document.createElement('span');
+          tagElement.className = 'badge text-bg-primary mx-3';
           tagElement.textContent = tag;
           tagElement.classList.add('tag');
           tagElement.addEventListener('click', () => filterByTag(tag, data));
@@ -30,10 +31,10 @@ async function loadData() {
       // Filter by tag
       function filterByTag(tag, items) {
           const tagElements = document.querySelectorAll('.tag');
-          tagElements.forEach(el => el.classList.remove('active'));
+          tagElements.forEach(el => el.classList.remove('text-bg-dark'));
 
           const activeTag = tagElements[Array.from(tagElements).findIndex(el => el.textContent === tag)];
-          activeTag.classList.add('active');
+          activeTag.classList.add('text-bg-dark');
 
           const filteredData = items.filter(item => item.tags.includes(tag));
           displayTitles(filteredData, titleList);
