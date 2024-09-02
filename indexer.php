@@ -1,37 +1,35 @@
 <?php
-function create_json_file($directory, $output_file) {
+
+function readFilesAndCreateJSON($directory) {
     $files = scandir($directory);
-    $data = [];
+    $jsonData = [];
 
     foreach ($files as $file) {
-        if ($file === '.' || $file === '..') {
-            continue;
+        if ($file != '.' && $file != '..') {
+            $filePath = $directory . '/' . $file;
+            $fileName = basename($filePath);
+            $tags = explode('-', $fileName);
+            $year = null;
+
+            foreach ($tags as $tag) {
+                if (is_numeric($tag)) {
+                    $year = $tag;
+                    break;
+                }
+            }
+
+            $jsonData[] = [
+                'title' => $fileName,
+                'url' => $filePath,
+                'year' => $year,
+                'tags' => $tags,
+            ];
         }
-
-        $filenameWithoutExtension = pathinfo($file, PATHINFO_FILENAME);
-        $year = substr($filenameWithoutExtension, strpos($filenameWithoutExtension, '-') + 1, 4);
-
-        $data[] = [
-            'title' => $filenameWithoutExtension,
-            'url' => $file,
-            'year' => intval($year),
-            'tags' => [
-                $year
-            ]
-        ];
     }
 
-    // Sort the data by year in descending order
-    usort($data, function ($a, $b) {
-        return $b['year'] - $a['year'];
-    });
-
-    $json_data = json_encode($data, JSON_PRETTY_PRINT);
-    file_put_contents($output_file, $json_data);
+    $jsonContent = json_encode($jsonData, JSON_PRETTY_PRINT);
+    file_put_contents('output.json', $jsonContent);
 }
 
-// Replace with your desired directory and output file paths
-$directory = 'reports';
-$output_file = 'output.json';
-
-create_json_file($directory, $output_file);
+// Replace 'your_directory_path' with the actual path to your directory
+readFilesAndCreateJSON('reports');
