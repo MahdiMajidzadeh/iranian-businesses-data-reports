@@ -6,6 +6,7 @@
     <title>JSON Data Display</title>
     <link href="https://unpkg.com/@webpixels/css@1.2.6/dist/index.css" rel="stylesheet">
     <link href="https://unpkg.com/@webpixels/dist/themes/minimal.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
@@ -13,11 +14,44 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <div id="tagList"></div>
-    <ul id="titleList" class="title-list"></ul>
-
+  <div>
+    <div class="pt-24">
+      <div class="container max-w-screen-xl">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-lg-10 text-lg-center">
+            <!-- Title -->
+            <h1 class="ls-tight font-bolder display-3 mb-7">
+              Iranian ‌Business Report
+            </h1>
+            <!-- Text -->
+            <p class="lead mb-12 px-lg-32">
+              An archive of data reports published by Iranian businesses.
+            </p>
+            <!-- Buttons -->
+            <div class="mx-n2">
+              <a href="https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports" class="btn btn-lg btn-primary mx-2 px-lg-8 btn-sm">
+                see github repo
+              </a>
+              <a href="https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/issues/new" class="btn btn-lg btn-neutral mx-2 px-lg-8 btn-sm">
+                add new report
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-10">
+          <div class="col-lg-11 text-lg-center">
+            <div class="row">
+              <div id="tagList"></div>
+              <div id="titleList" class="title-list row mt-5"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="py-24 bg-surface-secondary">
+      <!-- Content -->
+    </div>
+  </div>
     <script src="app.js"></script>
-
 </body>
 </html>

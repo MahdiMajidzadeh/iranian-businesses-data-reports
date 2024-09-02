@@ -17,8 +17,8 @@ async function loadData() {
 
       // Display tags
       tags.forEach(tag => {
-          const tagElement = document.createElement('span');
-          tagElement.className = 'badge text-bg-primary mx-3';
+          const tagElement = document.createElement('a');
+          tagElement.className = 'badge text-bg-primary mx-1 cursor-pointer';
           tagElement.textContent = tag;
           tagElement.classList.add('tag');
           tagElement.addEventListener('click', () => filterByTag(tag, data));
@@ -42,14 +42,35 @@ async function loadData() {
 
       // Function to display titles
       function displayTitles(items, listElement) {
-          listElement.innerHTML = '';
-          items.forEach(item => {
-              const li = document.createElement('li');
-              const a = document.createElement('a');
-              a.href = item.url;
-              a.textContent = `${item.title} (${item.year})`;
-              li.appendChild(a);
-              listElement.appendChild(li);
+        listElement.innerHTML = '';
+        items.forEach(item => {
+            // Create card structure
+            const cardDiv = document.createElement('div');
+            cardDiv.className = 'col-12 col-md-4';
+
+            cardDiv.innerHTML = `
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="flex-fill ms-4">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <div>
+                                    <span class="d-block h5 mb-0">${item.title}</span>
+                                </div>
+                            </div>
+                            <p class="text-sm text-muted my-2 pe-lg-5 text-start">
+                                ${item.tags.join(' - ')}
+                            </p>
+                            <div class="d-flex align-items-center">
+                                <a href="https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/${item.url}?raw=true" class="btn btn-sm btn-neutral">
+                                    <i class="bi bi-cloud-arrow-down"></i> get
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            listElement.appendChild(cardDiv);
           });
       }
   } catch (error) {
