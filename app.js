@@ -3,43 +3,44 @@
 // Function to load JSON data from "output.json"
 async function loadData() {
   try {
-      const response = await fetch('output.json');
-      const data = await response.json();
-
-      // Sort by year
-      data.sort((a, b) => b.year - a.year);
-
-      // Get unique tags
-      const tags = [...new Set(data.flatMap(item => item.tags))];
-
-      const tagList = document.getElementById('tagList');
-      const titleList = document.getElementById('titleList');
-
-      // Display tags
-      tags.forEach(tag => {
-          const tagElement = document.createElement('a');
-          tagElement.className = 'badge text-bg-primary mx-1 cursor-pointer';
-          tagElement.textContent = tag;
-          tagElement.classList.add('tag');
-          tagElement.addEventListener('click', () => filterByTag(tag, data));
-          tagList.appendChild(tagElement);
-      });
-
-      // Display titles
-      displayTitles(data, titleList);
-
-      // Filter by tag
-      function filterByTag(tag, items) {
-          const tagElements = document.querySelectorAll('.tag');
-          tagElements.forEach(el => el.classList.remove('text-bg-dark'));
-
-          const activeTag = tagElements[Array.from(tagElements).findIndex(el => el.textContent === tag)];
-          activeTag.classList.add('text-bg-dark');
-
-          const filteredData = items.filter(item => item.tags.includes(tag));
-          displayTitles(filteredData, titleList);
-      }
-
+    const response = await fetch('output.json');
+    const data = await response.json();
+    
+    // Sort by year
+    data.sort((a, b) => b.year - a.year);
+    
+    // Get unique tags and sort them in ascending order
+    const tags = [...new Set(data.flatMap(item => item.tags))].sort();
+    
+    // Get the elements where tags and titles will be displayed
+    const tagList = document.getElementById('tagList');
+    const titleList = document.getElementById('titleList');
+    
+    // Display tags
+    tags.forEach(tag => {
+        const tagElement = document.createElement('a');
+        tagElement.className = 'badge text-bg-secondary mx-1 cursor-pointer';
+        tagElement.textContent = tag;
+        tagElement.classList.add('tag');
+        tagElement.addEventListener('click', () => filterByTag(tag, data));
+        tagList.appendChild(tagElement);
+    });
+    
+    // Display titles
+    displayTitles(data, titleList);
+    
+    // Filter by tag
+    function filterByTag(tag, items) {
+        const tagElements = document.querySelectorAll('.tag');
+        tagElements.forEach(el => el.classList.remove('text-bg-dark'));
+    
+        const activeTag = tagElements[Array.from(tagElements).findIndex(el => el.textContent === tag)];
+        activeTag.classList.add('text-bg-dark');
+    
+        const filteredData = items.filter(item => item.tags.includes(tag));
+        displayTitles(filteredData, titleList);
+    }
+    
       // Function to display titles
       function displayTitles(items, listElement) {
         listElement.innerHTML = '';
