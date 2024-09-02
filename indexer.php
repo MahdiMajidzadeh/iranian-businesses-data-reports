@@ -7,29 +7,27 @@ function readFilesAndCreateJSON($directory) {
     foreach ($files as $file) {
         if ($file != '.' && $file != '..') {
             $filePath = $directory . '/' . $file;
-            $fileName = basename($filePath);
+            $fileName = basename($file, '.pdf'); // Remove extension
+
+            // Extract year from filename
+            $year = preg_match('/(\d{4})/', $fileName, $matches) ? $matches[1] : '';
+
+            // Create tags array
             $tags = explode('-', $fileName);
-            $year = null;
 
-            foreach ($tags as $tag) {
-                if (is_numeric($tag)) {
-                    $year = $tag;
-                    break;
-                }
-            }
-
+            // Add file data to JSON array
             $jsonData[] = [
                 'title' => $fileName,
-                'url' => $filePath,
+                'url' => $file,
                 'year' => $year,
-                'tags' => $tags,
+                'tags' => $tags
             ];
         }
     }
 
-    $jsonContent = json_encode($jsonData, JSON_PRETTY_PRINT);
-    file_put_contents('output.json', $jsonContent);
+    // Write JSON data to file
+    file_put_contents('output.json', json_encode($jsonData, JSON_PRETTY_PRINT));
 }
 
-// Replace 'your_directory_path' with the actual path to your directory
+// Replace 'your_directory_path' with the actual directory path
 readFilesAndCreateJSON('reports');
