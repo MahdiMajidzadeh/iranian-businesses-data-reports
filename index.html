@@ -1,42 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Iranian Businesses Data Reports</title>
-  <link href="https://unpkg.com/@webpixels/css@1.2.6/dist/index.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Data Display</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #tagList {
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .tag.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .title-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .title-list li {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
-
 <body>
-  <div class="container">
-    <div class="text-center mt-20 mb-12">
-      <h1 class="display-3 ls-tight"><span
-          class="d-inline-flex text-transparent bg-clip-text gradient-bottom-right start-purple-500 end-indigo-400 position-relative">Iranian</span>
-        Businesses Data Reports</h1>
-      <p class="text-lg font-semibold mt-5 px-lg-32">
-        Archive of reports published by Iranian businesses. From 1392(2014) until now!
-      </p>
-    </div>
-    <div id="tags"></div>
-    <div class="card">
-      <div class="card-body pb-0">
-        <div class="mb-3 d-flex align-items-center">
-          <h5 class="mb-0">Reports</h5>
-        </div>
-        <ul id="articles" class="p-0"></ul>
-      </div>
-    </div>
-    <p class="text-muted text-sm font-semibold text-center my-12">
-      This project is maintained by <a href="https://github.com/MahdiMajidzadeh">MahdiMajidzadeh</a>
-    </p>
-  </div>
-  <script src="app.js"></script>
-</body>
 
+    <div id="tagList"></div>
+    <ul id="titleList" class="title-list"></ul>
+
+    <script>
+        // Function to load JSON data from "output.json"
+        async function loadData() {
+            try {
+                const response = await fetch('output.json');
+                const data = await response.json();
+
+                // Sort by year
+                data.sort((a, b) => b.year - a.year);
+
+                // Get unique tags
+                const tags = [...new Set(data.flatMap(item => item.tags))];
+
+                const tagList = document.getElementById('tagList');
+                const titleList = document.getElementById('titleList');
+
+                // Display tags
+                tags.forEach(tag => {
+                    const tagElement = document.createElement('span');
+                    tagElement.textContent = tag;
+                    tagElement.classList.add('tag');
+                    tagElement.addEventListener('click', () => filterByTag(tag, data));
+                    tagList.appendChild(tagElement);
+                });
+
+                // Display titles
+                displayTitles(data, titleList);
+
+                // Filter by tag
+                function filterByTag(tag, items) {
+                    const tagElements = document.querySelectorAll('.tag');
+                    tagElements.forEach(el => el.classList.remove('active'));
+
+                    const activeTag = tagElements[Array.from(tagElements).findIndex(el => el.textContent === tag)];
+                    activeTag.classList.add('active');
+
+                    const filteredData = items.filter(item => item.tags.includes(tag));
+                    displayTitles(filteredData, titleList);
+                }
+
+                // Function to display titles
+                function displayTitles(items, listElement) {
+                    listElement.innerHTML = '';
+                    items.forEach(item => {
+                        const li = document.createElement('li');
+                        const a = document.createElement('a');
+                        a.href = item.url;
+                        a.textContent = `${item.title} (${item.year})`;
+                        li.appendChild(a);
+                        listElement.appendChild(li);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading the JSON data', error);
+            }
+        }
+
+        // Load data on page load
+        loadData();
+    </script>
+
+</body>
 </html>
