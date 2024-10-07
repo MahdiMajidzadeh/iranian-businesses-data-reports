@@ -1526,7 +1526,7 @@
     },
     {
         "title": "BitPin HR 1402",
-        "url": "bitPin-hr-1402.pdf",
+        "url": "bitpin-hr-1402.pdf",
         "year": "1402",
         "tags": [
             "hr",
@@ -1778,7 +1778,7 @@
     },
     {
         "title": "Websima 1401",
-        "url": "websima 1401.pdf",
+        "url": "websima-1401.pdf",
         "year": "1401",
         "tags": [
             "1401"
@@ -1797,6 +1797,24 @@
         "url": "zarinplus-1402.pdf",
         "year": "1402",
         "tags": [
+            "1402"
+        ]
+    },
+    {
+        "title": "taaghche-1402",
+        "url": "taaghche-1402.pdf",
+        "year": "1402",
+        "tags": [
+            "taaghche",
+            "1402"
+        ]
+    },
+    {
+        "title": "yektanet-1402",
+        "url": "yektanet-1402.pdf",
+        "year": "1402",
+        "tags": [
+            "yektanet",
             "1402"
         ]
     }
