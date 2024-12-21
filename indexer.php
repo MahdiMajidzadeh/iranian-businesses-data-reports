@@ -29,7 +29,7 @@ function readFilesAndCreateJSON($directory) {
             if (!isset($existingUrls[$file])) {
                 // Add file data to JSON array only if the 'url' doesn't exist
                 $jsonData[] = [
-                    'title' => $fileName,
+                    'title' =>  ucwords( str_replace('-', ' ',$fileName)),
                     'url' => $file,
                     'year' => $year,
                     'tags' => $tags
