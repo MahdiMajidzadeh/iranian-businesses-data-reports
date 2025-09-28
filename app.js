@@ -1,3 +1,8 @@
+// Helper function to capitalize first letter
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 // Load JSON data and display with Flux.dev components
 async function loadData() {
   try {
@@ -42,7 +47,7 @@ async function loadData() {
     tags.forEach(tag => {
         const tagElement = document.createElement('span');
         tagElement.classList.add('tag-badge', 'tag-badge-secondary');
-        tagElement.textContent = tag;
+        tagElement.textContent = capitalizeFirstLetter(tag);
         tagElement.addEventListener('click', () => filterByTag(tag, data));
         tagList.appendChild(tagElement);
     });
@@ -154,7 +159,7 @@ async function loadData() {
                         <span class="card-year">Year: ${item.year}</span>
                     </div>
                     <div class="card-body">
-                        <p class="card-tags">Categories: ${item.tags.filter(tag => !/^\d{4}$/.test(tag)).join(', ')}</p>
+                        <p class="card-tags">Categories: ${item.tags.filter(tag => !/^\d{4}$/.test(tag)).map(tag => capitalizeFirstLetter(tag)).join(', ')}</p>
                     </div>
                     <div class="card-footer">
                         <a href="https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/${item.url}?raw=true"
