@@ -12,21 +12,23 @@
 <body>
   <div class="app">
     <!-- Header Section -->
-    <div class="container header-section">
-      <div class="header-content">
-        <h1 class="main-title">Iranian Business Reports</h1>
-        <p class="subtitle">An archive of data reports published by Iranian businesses</p>
-        <div class="button-group">
-          <a href="https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports" 
-             target="_blank" 
-             class="btn btn-primary">
-            View GitHub Repository
-          </a>
-          <a href="https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/issues/new" 
-             target="_blank" 
-             class="btn btn-secondary">
-            Add New Report
-          </a>
+    <div class="header-section">
+      <div class="container">
+        <div class="header-content">
+          <h1 class="main-title">Iranian Business Reports</h1>
+          <p class="subtitle">An archive of data reports published by Iranian businesses</p>
+          <div class="button-group">
+            <a href="https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports" 
+               target="_blank" 
+               class="btn btn-primary">
+              View GitHub Repository
+            </a>
+            <a href="https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/issues/new" 
+               target="_blank" 
+               class="btn btn-secondary">
+              Add New Report
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -39,12 +41,23 @@
           <span id="resultCount" class="result-count"></span>
         </div>
         
-        <!-- Search Input -->
-        <input 
-          id="searchInput"
-          type="text"
-          placeholder="Search reports by title, year, or category..."
-          class="search-input">
+        <!-- Search and Year Filter Row -->
+        <div class="search-year-row">
+          <!-- Search Input -->
+          <input 
+            id="searchInput"
+            type="text"
+            placeholder="Search reports by title, year, or category..."
+            class="search-input">
+          
+          <!-- Year Selector -->
+          <div class="year-selector">
+            <label for="yearSelect">Year:</label>
+            <select id="yearSelect" class="year-dropdown">
+              <option value="">All Years</option>
+            </select>
+          </div>
+        </div>
         
         <!-- Category Filters -->
         <div id="tagList" class="tag-container"></div>
@@ -57,14 +70,16 @@
     </div>
 
     <!-- Footer -->
-    <div class="container footer-section">
-      <div class="footer-content">
-        <p>
-          This project is maintained and developed by 
-          <a href="https://www.linkedin.com/in/mahdimajidzadeh/" target="_blank">
-            Mahdi Majidzadeh
-          </a>
-        </p>
+    <div class="footer-section">
+      <div class="container">
+        <div class="footer-content">
+          <p>
+            This project is maintained and developed by 
+            <a href="https://www.linkedin.com/in/mahdimajidzadeh/" target="_blank">
+              Mahdi Majidzadeh
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   </div>

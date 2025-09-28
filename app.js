@@ -16,8 +16,20 @@ async function loadData() {
     const yearPattern = /^\d{4}$/; // Matches 4-digit years
     const tags = [...new Set(allTags.filter(tag => !yearPattern.test(tag)))].sort();
     
+    // Get unique years and sort them (newest first)
+    const years = [...new Set(data.map(item => item.year))].sort((a, b) => b - a);
+    
     // Get the elements where tags and titles will be displayed
     const tagList = document.getElementById('tagList');
+    const yearSelect = document.getElementById('yearSelect');
+    
+    // Populate year selector
+    years.forEach(year => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
+    });
     
     // Add "Show All" button
     const showAllButton = document.createElement('span');
@@ -41,16 +53,32 @@ async function loadData() {
     
     // Add search functionality
     const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        const filteredData = data.filter(item => 
-            item.title.toLowerCase().includes(searchTerm) ||
-            item.year.includes(searchTerm) ||
-            item.tags.filter(tag => !/^\d{4}$/.test(tag)).some(tag => tag.toLowerCase().includes(searchTerm))
-        );
+    searchInput.addEventListener('input', () => applyFilters());
+    
+    // Add year filter functionality
+    yearSelect.addEventListener('change', () => applyFilters());
+    
+    // Combined filter function
+    function applyFilters() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const selectedYear = yearSelect.value;
+        
+        let filteredData = data.filter(item => {
+            // Search filter
+            const matchesSearch = searchTerm === '' || 
+                item.title.toLowerCase().includes(searchTerm) ||
+                item.year.includes(searchTerm) ||
+                item.tags.filter(tag => !/^\d{4}$/.test(tag)).some(tag => tag.toLowerCase().includes(searchTerm));
+            
+            // Year filter
+            const matchesYear = selectedYear === '' || item.year === selectedYear;
+            
+            return matchesSearch && matchesYear;
+        });
+        
         displayTitles(filteredData, titleList);
         updateResultCount(filteredData.length);
-    });
+    }
     
     // Show all function
     function showAll(items) {
@@ -63,6 +91,7 @@ async function loadData() {
             }
         });
         searchInput.value = '';
+        yearSelect.value = '';
         displayTitles(items, titleList);
         updateResultCount(items.length);
     }
@@ -83,8 +112,21 @@ async function loadData() {
             activeTag.className = 'tag-badge tag-badge-primary';
         }
     
-        const filteredData = items.filter(item => item.tags.includes(tag));
-        searchInput.value = '';
+        // Apply tag filter along with existing search and year filters
+        const searchTerm = searchInput.value.toLowerCase();
+        const selectedYear = yearSelect.value;
+        
+        const filteredData = items.filter(item => {
+            const matchesTag = item.tags.includes(tag);
+            const matchesSearch = searchTerm === '' || 
+                item.title.toLowerCase().includes(searchTerm) ||
+                item.year.includes(searchTerm) ||
+                item.tags.filter(tag => !/^\d{4}$/.test(tag)).some(tag => tag.toLowerCase().includes(searchTerm));
+            const matchesYear = selectedYear === '' || item.year === selectedYear;
+            
+            return matchesTag && matchesSearch && matchesYear;
+        });
+        
         displayTitles(filteredData, titleList);
         updateResultCount(filteredData.length);
     }
