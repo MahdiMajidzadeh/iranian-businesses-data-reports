@@ -3,62 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iranian Business Report</title>
-    <link href="https://unpkg.com/@webpixels/css@1.2.6/dist/index.css" rel="stylesheet">
-    <link href="https://unpkg.com/@webpixels/dist/themes/minimal.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Iranian Business Reports</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
-      rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div>
-    <div class="pt-24">
-      <div class="container max-w-screen-xl">
-        <div class="row align-items-center justify-content-center">
-          <div class="col-lg-10 text-lg-center">
-            <!-- Title -->
-            <h1 class="ls-tight font-bolder display-3 mb-7">
-              Iranian Business Report
-            </h1>
-            <!-- Text -->
-            <p class="lead mb-12 px-lg-32">
-              An archive of data reports published by Iranian businesses.
-            </p>
-            <!-- Buttons -->
-            <div class="mx-n2">
-              <a href="https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports" class="btn btn-lg btn-primary mx-2 px-lg-8 btn-sm">
-                see github repo
-              </a>
-              <a href="https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/issues/new" class="btn btn-lg btn-neutral mx-2 px-lg-8 btn-sm">
-                add new report
-              </a>
-            </div>
-          </div>
+  <div class="app">
+    <!-- Header Section -->
+    <div class="container header-section">
+      <div class="header-content">
+        <h1 class="main-title">Iranian Business Reports</h1>
+        <p class="subtitle">An archive of data reports published by Iranian businesses</p>
+        <div class="button-group">
+          <a href="https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports" 
+             target="_blank" 
+             class="btn btn-primary">
+            View GitHub Repository
+          </a>
+          <a href="https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/issues/new" 
+             target="_blank" 
+             class="btn btn-secondary">
+            Add New Report
+          </a>
         </div>
-        <div class="row justify-content-center mt-10">
-          <div class="col-lg-11 text-lg-center">
-            <div class="row">
-              <div id="tagList"></div>
-              <div id="titleList" class="title-list row mt-5"></div>
-            </div>
-          </div>
+      </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="container filter-section">
+      <div class="filter-content">
+        <div class="filter-header">
+          <h2>Filter & Search</h2>
+          <span id="resultCount" class="result-count"></span>
         </div>
+        
+        <!-- Search Input -->
+        <input 
+          id="searchInput"
+          type="text"
+          placeholder="Search reports by title, year, or category..."
+          class="search-input">
+        
+        <!-- Category Filters -->
+        <div id="tagList" class="tag-container"></div>
+      </div>
+    </div>
+
+    <!-- Reports Grid -->
+    <div class="container reports-section">
+      <div id="titleList" class="reports-grid"></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container footer-section">
+      <div class="footer-content">
+        <p>
+          This project is maintained and developed by 
+          <a href="https://www.linkedin.com/in/mahdimajidzadeh/" target="_blank">
+            Mahdi Majidzadeh
+          </a>
+        </p>
       </div>
     </div>
   </div>
-  <footer class="py-20">
-    <div class="container">
-      <div class="row justify-content-center text-center">
-        <div class="col-xl-9">
-          <p class="text-sm text-muted opacity-8">
-            This project is maintained and developed by <a href="https://www.linkedin.com/in/mahdimajidzadeh/">Mahdi Majidzadeh</a>.
-        </div>
-      </div>
-    </div>
-  </footer>
-    <script src="app.js"></script>
+
+  <script src="app.js"></script>
 </body>
 </html>
