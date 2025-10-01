@@ -14,22 +14,6 @@ A simple, searchable archive of data reports published by Iranian businesses. Br
 - Sorted newest-first
 - Direct links to download each report as PDF
 
-### Getting started (local)
-1. Clone the repository.
-2. Serve the directory with any static server (so `output.json` loads correctly). For example:
-
-```bash
-python3 -m http.server 8000
-# then open http://localhost:8000
-```
-
-### Project structure
-- `index.html` — main page and meta tags
-- `style.css` — styling
-- `app.js` — data loading, search, filters, and rendering
-- `output.json` — dataset describing reports
-- `reports/` — PDF files (downloaded via links)
-
 ### Contributing
 - Open an issue to suggest a new report or improvement.
 - PRs are welcome for UI/UX, performance, accessibility, or data updates.
