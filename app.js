@@ -48,9 +48,13 @@ async function loadData() {
         const tagElement = document.createElement('span');
         tagElement.classList.add('tag-badge', 'tag-badge-secondary');
         tagElement.textContent = capitalizeFirstLetter(tag);
+        tagElement.setAttribute('data-tag', tag);
         tagElement.addEventListener('click', () => filterByTag(tag, data));
         tagList.appendChild(tagElement);
     });
+
+    // Mobile collapse for tags
+    setupMobileTagCollapse(tagList);
     
     // Display titles
     displayTitles(data, titleList);
@@ -112,7 +116,7 @@ async function loadData() {
             }
         });
     
-        const activeTag = Array.from(tagElements).find(el => el.textContent === tag);
+        const activeTag = Array.from(tagElements).find(el => el.getAttribute('data-tag') === tag);
         if (activeTag) {
             activeTag.className = 'tag-badge tag-badge-primary';
         }
@@ -134,6 +138,37 @@ async function loadData() {
         
         displayTitles(filteredData, titleList);
         updateResultCount(filteredData.length);
+    }
+    
+    // Setup collapsible tag list on mobile
+    function setupMobileTagCollapse(container) {
+        let toggleBtn = null;
+        
+        function ensureSetup() {
+            container.classList.add('tags-collapsed');
+            if (!toggleBtn) {
+                toggleBtn = document.createElement('button');
+                toggleBtn.className = 'tag-toggle-btn';
+                toggleBtn.type = 'button';
+                toggleBtn.textContent = 'Show more';
+                toggleBtn.setAttribute('aria-expanded', 'false');
+                container.parentElement.appendChild(toggleBtn);
+                toggleBtn.addEventListener('click', () => {
+                    const isCollapsed = container.classList.contains('tags-collapsed');
+                    if (isCollapsed) {
+                        container.classList.remove('tags-collapsed');
+                        toggleBtn.textContent = 'Show less';
+                        toggleBtn.setAttribute('aria-expanded', 'true');
+                    } else {
+                        container.classList.add('tags-collapsed');
+                        toggleBtn.textContent = 'Show more';
+                        toggleBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        }
+
+        ensureSetup();
     }
     
     // Update result count

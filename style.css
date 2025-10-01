@@ -85,6 +85,20 @@ body {
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
+/* Neutralize the primary button within report item cards only */
+.card-footer .btn-primary {
+    background-color: #e5e7eb;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    box-shadow: none;
+}
+
+.card-footer .btn-primary:hover {
+    background-color: #d1d5db;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
 .btn-secondary {
     background-color: rgba(255, 255, 255, 0.2);
     color: white;
@@ -199,6 +213,43 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+}
+
+/* Mobile collapsible tags */
+.tag-toggle-btn {
+    display: block;
+    margin: 0.75rem auto 1rem auto;
+    background: #e5e7eb;
+    color: #374151;
+    border: none;
+    padding: 0.5rem 0.875rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.tag-toggle-btn:hover {
+    background: #d1d5db;
+}
+
+/* Collapsed state (mobile) */
+.tags-collapsed {
+    position: relative;
+    /* roughly 3 rows of pill tags including gaps */
+    max-height: 130px;
+    overflow: hidden;
+}
+
+.tags-collapsed::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 44px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), #ffffff);
 }
 
 .tag-badge {
@@ -371,6 +422,9 @@ body {
     
     .tag-container {
         margin-bottom: 1rem;
+    }
+    .tag-toggle-btn {
+        display: block;
     }
     
     .reports-section {
