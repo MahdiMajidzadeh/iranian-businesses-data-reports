@@ -5,5 +5,7 @@ see full data at [https://github.com/saeedesmaili/iranian-businesses-data-report
 
 ### Tasks to do
 - [ ] add favicon
+- [x] add serach
+- [x] better view for tags
 - [ ] add meta tags for better preveiw in socials and other
-- [ ] add all to filters to show all reports after select one of tags 
+- [x] add all to filters to show all reports after select one of tags 
