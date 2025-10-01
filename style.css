@@ -85,6 +85,20 @@ body {
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
+/* Neutralize the primary button within report item cards only */
+.card-footer .btn-primary {
+    background-color: #e5e7eb;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    box-shadow: none;
+}
+
+.card-footer .btn-primary:hover {
+    background-color: #d1d5db;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
 .btn-secondary {
     background-color: rgba(255, 255, 255, 0.2);
     color: white;
