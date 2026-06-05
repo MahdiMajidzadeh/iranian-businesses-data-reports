@@ -194,7 +194,7 @@ async function loadData() {
                         <span class="card-year">Year: ${item.year}</span>
                     </div>
                     <div class="card-body">
-                        <p class="card-tags">Categories: ${item.tags.filter(tag => !/^\d{4}$/.test(tag)).map(tag => capitalizeFirstLetter(tag)).join(', ')}</p>
+                        <p class="card-tags">tags: ${item.tags.filter(tag => !/^\d{4}$/.test(tag)).map(tag => capitalizeFirstLetter(tag)).join(', ')}</p>
                     </div>
                     <div class="card-footer">
                         <a href="https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/${item.url}?raw=true"
