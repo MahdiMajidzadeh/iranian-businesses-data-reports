@@ -1,237 +1,236 @@
-// Helper function to capitalize first letter
+// ============================================================
+// Iranian Business Reports — app logic
+// ============================================================
+
+const REPO = "https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports";
+const YEAR_RE = /^\d{4}$/;
+const TAG_VISIBLE_LIMIT = 14;
+
+// ---- helpers ----
 function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 // Escape HTML special characters to prevent XSS from report data
 function escapeHtml(string) {
-    return String(string)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
+  return String(string)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
-// Load JSON data and display with Flux.dev components
-async function loadData() {
-  try {
-    // Show loading state
-    const titleList = document.getElementById('titleList');
-    titleList.innerHTML = '<div class="loading"></div>';
-    
-    const response = await fetch('output.json');
-    const data = await response.json();
-    
-    // Sort by year (newest first)
-    data.sort((a, b) => b.year - a.year);
-    
-    // Get unique tags and sort them (excluding year values)
-    const allTags = data.flatMap(item => item.tags);
-    const yearPattern = /^\d{4}$/; // Matches 4-digit years
-    const tags = [...new Set(allTags.filter(tag => !yearPattern.test(tag)))].sort();
-    
-    // Get unique years and sort them (newest first)
-    const years = [...new Set(data.map(item => item.year))].sort((a, b) => b - a);
-    
-    // Get the elements where tags and titles will be displayed
-    const tagList = document.getElementById('tagList');
-    const yearSelect = document.getElementById('yearSelect');
-    
-    // Populate year selector
-    years.forEach(year => {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        yearSelect.appendChild(option);
-    });
-    
-    // Add "Show All" button
-    const showAllButton = document.createElement('span');
-    showAllButton.classList.add('tag-badge', 'tag-badge-primary');
-    showAllButton.textContent = 'Show All';
-    showAllButton.addEventListener('click', () => showAll(data));
-    tagList.appendChild(showAllButton);
-    
-    // Display tags as badges
-    tags.forEach(tag => {
-        const tagElement = document.createElement('span');
-        tagElement.classList.add('tag-badge', 'tag-badge-secondary');
-        tagElement.textContent = capitalizeFirstLetter(tag);
-        tagElement.setAttribute('data-tag', tag);
-        tagElement.addEventListener('click', () => filterByTag(tag, data));
-        tagList.appendChild(tagElement);
-    });
+function categoryTags(item) {
+  return item.tags.filter((tag) => !YEAR_RE.test(tag));
+}
 
-    // Mobile collapse for tags
-    setupMobileTagCollapse(tagList);
-    
-    // Display titles
-    displayTitles(data, titleList);
-    updateResultCount(data.length);
-    
-    // Add search functionality
-    const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('input', () => applyFilters());
-    
-    // Add year filter functionality
-    yearSelect.addEventListener('change', () => applyFilters());
-    
-    // Combined filter function
-    function applyFilters() {
-        const searchTerm = searchInput.value.toLowerCase();
-        const selectedYear = yearSelect.value;
-        
-        let filteredData = data.filter(item => {
-            // Search filter
-            const matchesSearch = searchTerm === '' || 
-                item.title.toLowerCase().includes(searchTerm) ||
-                item.year.includes(searchTerm) ||
-                item.tags.filter(tag => !/^\d{4}$/.test(tag)).some(tag => tag.toLowerCase().includes(searchTerm));
-            
-            // Year filter
-            const matchesYear = selectedYear === '' || item.year === selectedYear;
-            
-            return matchesSearch && matchesYear;
-        });
-        
-        displayTitles(filteredData, titleList);
-        updateResultCount(filteredData.length);
-    }
-    
-    // Show all function
-    function showAll(items) {
-        const tagElements = document.querySelectorAll('.tag-badge');
-        tagElements.forEach(el => {
-            if (el.textContent === 'Show All') {
-                el.className = 'tag-badge tag-badge-primary';
-            } else {
-                el.className = 'tag-badge tag-badge-secondary';
-            }
-        });
-        searchInput.value = '';
-        yearSelect.value = '';
-        displayTitles(items, titleList);
-        updateResultCount(items.length);
-    }
-    
-    // Filter by tag function
-    function filterByTag(tag, items) {
-        const tagElements = document.querySelectorAll('.tag-badge');
-        tagElements.forEach(el => {
-            if (el.textContent === 'Show All') {
-                el.className = 'tag-badge tag-badge-secondary';
-            } else {
-                el.className = 'tag-badge tag-badge-secondary';
-            }
-        });
-    
-        const activeTag = Array.from(tagElements).find(el => el.getAttribute('data-tag') === tag);
-        if (activeTag) {
-            activeTag.className = 'tag-badge tag-badge-primary';
-        }
-    
-        // Apply tag filter along with existing search and year filters
-        const searchTerm = searchInput.value.toLowerCase();
-        const selectedYear = yearSelect.value;
-        
-        const filteredData = items.filter(item => {
-            const matchesTag = item.tags.includes(tag);
-            const matchesSearch = searchTerm === '' || 
-                item.title.toLowerCase().includes(searchTerm) ||
-                item.year.includes(searchTerm) ||
-                item.tags.filter(tag => !/^\d{4}$/.test(tag)).some(tag => tag.toLowerCase().includes(searchTerm));
-            const matchesYear = selectedYear === '' || item.year === selectedYear;
-            
-            return matchesTag && matchesSearch && matchesYear;
-        });
-        
-        displayTitles(filteredData, titleList);
-        updateResultCount(filteredData.length);
-    }
-    
-    // Setup collapsible tag list on mobile
-    function setupMobileTagCollapse(container) {
-        let toggleBtn = null;
-        
-        function ensureSetup() {
-            container.classList.add('tags-collapsed');
-            if (!toggleBtn) {
-                toggleBtn = document.createElement('button');
-                toggleBtn.className = 'tag-toggle-btn';
-                toggleBtn.type = 'button';
-                toggleBtn.textContent = 'Show more';
-                toggleBtn.setAttribute('aria-expanded', 'false');
-                container.parentElement.appendChild(toggleBtn);
-                toggleBtn.addEventListener('click', () => {
-                    const isCollapsed = container.classList.contains('tags-collapsed');
-                    if (isCollapsed) {
-                        container.classList.remove('tags-collapsed');
-                        toggleBtn.textContent = 'Show less';
-                        toggleBtn.setAttribute('aria-expanded', 'true');
-                    } else {
-                        container.classList.add('tags-collapsed');
-                        toggleBtn.textContent = 'Show more';
-                        toggleBtn.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-        }
+// ---- theme ----
+function setupTheme() {
+  const toggle = document.getElementById("themeToggle");
+  const icon = document.getElementById("themeIcon");
+  const label = document.getElementById("themeLabel");
+  const root = document.documentElement;
 
-        ensureSetup();
-    }
-    
-    // Update result count
-    function updateResultCount(count) {
-        const resultCount = document.getElementById('resultCount');
-        resultCount.textContent = `${count} report${count !== 1 ? 's' : ''} found`;
-    }
-    
-    // Function to display titles using regular HTML
-    function displayTitles(items, listElement) {
-        listElement.innerHTML = '';
-        
-        items.forEach(item => {
-            // Create card container
-            const cardContainer = document.createElement('div');
-            cardContainer.className = 'report-card';
-            
-            // Build download URL, encoding the filename safely
-            const downloadUrl = `https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/${encodeURIComponent(item.url)}?raw=true`;
-            const tagText = item.tags
-                .filter(tag => !/^\d{4}$/.test(tag))
-                .map(tag => capitalizeFirstLetter(tag))
-                .join(', ');
-
-            // Create card content (all report-derived values are HTML-escaped)
-            cardContainer.innerHTML = `
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">${escapeHtml(item.title)}</h3>
-                        <span class="card-year">Year: ${escapeHtml(item.year)}</span>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-tags">tags: ${escapeHtml(tagText)}</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="${escapeHtml(downloadUrl)}"
-                           target="_blank"
-                           rel="noopener"
-                           class="btn btn-primary btn-sm">
-                            Download Report
-                        </a>
-                        <span class="file-type">PDF</span>
-                    </div>
-                </div>
-            `;
-            
-            listElement.appendChild(cardContainer);
-        });
-    }
-  } catch (error) {
-      console.error('Error loading the JSON data', error);
+  function currentTheme() {
+    if (root.dataset.theme) return root.dataset.theme;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
   }
+
+  function paint(theme) {
+    // When dark is active, offer "Light" (a sun); otherwise offer "Dark" (a moon).
+    icon.textContent = theme === "dark" ? "☀" : "☾";
+    label.textContent = theme === "dark" ? "Light" : "Dark";
+  }
+
+  const saved = localStorage.getItem("theme");
+  if (saved === "light" || saved === "dark") root.dataset.theme = saved;
+  paint(currentTheme());
+
+  toggle.addEventListener("click", () => {
+    const next = currentTheme() === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    localStorage.setItem("theme", next);
+    paint(next);
+  });
 }
 
-// Load data when DOM is ready
-document.addEventListener('DOMContentLoaded', loadData);
+// ---- main ----
+async function loadData() {
+  const titleList = document.getElementById("titleList");
+  const tagList = document.getElementById("tagList");
+  const yearSelect = document.getElementById("yearSelect");
+  const searchInput = document.getElementById("searchInput");
+  const resultCount = document.getElementById("resultCount");
+
+  setupTheme();
+
+  titleList.innerHTML = '<div class="loading"></div>';
+
+  let data;
+  try {
+    // Bypass the browser cache so newly added reports show up immediately.
+    const response = await fetch("output.json", { cache: "no-store" });
+    data = await response.json();
+  } catch (error) {
+    console.error("Error loading the JSON data", error);
+    titleList.innerHTML =
+      '<div class="empty-state"><h3>Could not load reports</h3><p>Please try again later.</p></div>';
+    return;
+  }
+
+  data.sort((a, b) => b.year - a.year);
+
+  // Filter state
+  let activeTag = "";
+  let tagsExpanded = false;
+
+  // Populate year selector (newest first)
+  const years = [...new Set(data.map((item) => item.year))].sort((a, b) => b - a);
+  years.forEach((year) => {
+    const option = document.createElement("option");
+    option.value = year;
+    option.textContent = year;
+    yearSelect.appendChild(option);
+  });
+
+  // Unique category tags (year values excluded), sorted
+  const allTags = [
+    ...new Set(data.flatMap((item) => item.tags).filter((tag) => !YEAR_RE.test(tag))),
+  ].sort();
+
+  function getFiltered() {
+    const q = searchInput.value.trim().toLowerCase();
+    const selectedYear = yearSelect.value;
+
+    return data.filter((item) => {
+      if (selectedYear && item.year !== selectedYear) return false;
+      if (activeTag && !item.tags.includes(activeTag)) return false;
+      if (q) {
+        const hay = (
+          item.title +
+          " " +
+          item.year +
+          " " +
+          categoryTags(item).join(" ")
+        ).toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+  }
+
+  function renderTags() {
+    tagList.innerHTML = "";
+
+    const noFilters = !activeTag && !yearSelect.value && searchInput.value.trim() === "";
+    const showAll = document.createElement("button");
+    showAll.type = "button";
+    showAll.className = "chip" + (noFilters ? " active" : "");
+    showAll.textContent = "Show All";
+    showAll.setAttribute("aria-pressed", String(noFilters));
+    showAll.addEventListener("click", resetAll);
+    tagList.appendChild(showAll);
+
+    const shown = tagsExpanded ? allTags : allTags.slice(0, TAG_VISIBLE_LIMIT);
+    shown.forEach((tag) => {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      const isActive = activeTag === tag;
+      chip.className = "chip" + (isActive ? " active" : "");
+      chip.textContent = capitalizeFirstLetter(tag);
+      chip.setAttribute("aria-pressed", String(isActive));
+      chip.addEventListener("click", () => {
+        activeTag = activeTag === tag ? "" : tag;
+        render();
+      });
+      tagList.appendChild(chip);
+    });
+
+    if (allTags.length > TAG_VISIBLE_LIMIT) {
+      const more = document.createElement("button");
+      more.type = "button";
+      more.className = "chip-more";
+      more.textContent = tagsExpanded ? "Show less" : `Show more (${allTags.length - TAG_VISIBLE_LIMIT})`;
+      more.addEventListener("click", () => {
+        tagsExpanded = !tagsExpanded;
+        renderTags();
+      });
+      tagList.appendChild(more);
+    }
+  }
+
+  function renderCards(items) {
+    if (items.length === 0) {
+      titleList.classList.remove("reports-grid");
+      titleList.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="m14 14-3.5-3.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3>No reports found</h3>
+          <p>Try a different search term, year, or category.</p>
+          <button type="button" id="clearFilters" class="btn btn-accent">Clear filters</button>
+        </div>`;
+      document.getElementById("clearFilters").addEventListener("click", resetAll);
+      return;
+    }
+
+    titleList.classList.add("reports-grid");
+    titleList.innerHTML = items
+      .map((item) => {
+        const downloadUrl = `${REPO}/blob/main/reports/${encodeURIComponent(item.url)}?raw=true`;
+        const tags = categoryTags(item);
+        const tagHtml = tags
+          .map(
+            (t, i) =>
+              `<span class="card-tag">${escapeHtml(capitalizeFirstLetter(t))}${
+                i < tags.length - 1 ? " ·" : ""
+              }</span>`
+          )
+          .join("");
+
+        return `
+          <article class="report-card">
+            <div class="card-top">
+              <span class="card-year">${escapeHtml(item.year)}</span>
+              <span class="pdf-badge">PDF</span>
+            </div>
+            <h3 class="card-title">${escapeHtml(item.title)}</h3>
+            <div class="card-tags">${tagHtml}</div>
+            <a href="${escapeHtml(downloadUrl)}" target="_blank" rel="noopener" class="download-btn">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8m0 0 3-3M8 10 5 7"/><path d="M2.5 11v1.5A1.5 1.5 0 0 0 4 14h8a1.5 1.5 0 0 0 1.5-1.5V11"/></svg>
+              Download Report
+            </a>
+          </article>`;
+      })
+      .join("");
+  }
+
+  function updateResultCount(count) {
+    resultCount.textContent = `${count} report${count !== 1 ? "s" : ""} found`;
+  }
+
+  function render() {
+    const filtered = getFiltered();
+    renderTags();
+    renderCards(filtered);
+    updateResultCount(filtered.length);
+  }
+
+  function resetAll() {
+    activeTag = "";
+    searchInput.value = "";
+    yearSelect.value = "";
+    render();
+  }
+
+  searchInput.addEventListener("input", render);
+  yearSelect.addEventListener("change", render);
+
+  render();
+}
+
+document.addEventListener("DOMContentLoaded", loadData);
