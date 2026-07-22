@@ -1,28 +1,33 @@
-# Iranian Businesses Data Reports
+# Iranian Business Reports
 
-A simple, searchable archive of data reports published by Iranian businesses. Browse by year and category, and download PDFs directly.
+An open, searchable archive of data reports published by Iranian businesses — annual reports, market studies, and industry statistics gathered in one place and free to download.
 
 ![Project preview](ibr-preview.png)
 
-- Live site: `https://mahdimajidzadeh.github.io/iranian-businesses-data-reports/`
-- Source repository: `https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports`
-- Related data source: `https://github.com/saeedesmaili/iranian-businesses-data-reports`
+**Visit the site:** https://mahdimajidzadeh.github.io/iranian-businesses-data-reports/
 
-### Features
-- Search by title, year, or category
-- Filter by year and tags, with a quick "Show All" toggle
-- Sorted newest-first
-- Direct links to download each report as PDF
+## What you'll find
 
-### Contributing
-- Open an issue to suggest a new report or improvement.
-- PRs are welcome for UI/UX, performance, accessibility, or data updates.
+Hundreds of reports from companies across e-commerce, fintech, logistics, media, and more — collected from across the web and organized so you can quickly find and download what you need. No sign-up, no paywall.
 
----
+## How to use it
 
-### Tasks to do
-- [ ] add favicon
-- [x] add serach
-- [x] better view for tags
-- [x] add meta tags for better preveiw in socials and other
-- [x] add all to filters to show all reports after select one of tags 
+- **Search** — start typing a company, topic, or year in the search box to instantly narrow the list.
+- **Filter by category** — click a tag (for example *Fintech* or *E-commerce*) to see only reports in that area. Use **Show more** to reveal all categories.
+- **Filter by year** — choose a year from the dropdown.
+- **Show All** — clears every filter and brings back the full archive.
+- **Download** — click **Download Report** on any card to open its PDF.
+- **Dark or light** — use the toggle in the top corner to switch themes; your choice is remembered.
+
+Reports are always sorted newest first.
+
+## Suggest or add a report
+
+Spotted a report that's missing, or have one to share?
+
+- Click **Add New Report** on the site (or open an issue here) to suggest it.
+- Corrections and improvements are welcome too — just open an issue.
+
+## Credits
+
+Maintained by [Mahdi Majidzadeh](https://www.linkedin.com/in/mahdimajidzadeh/). Report data builds on the community dataset by [saeedesmaili](https://github.com/saeedesmaili/iranian-businesses-data-reports).
