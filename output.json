@@ -594,7 +594,6 @@
         "year": "1402",
         "tags": [
             "ilia",
-            "csr",
             "1402"
         ]
     },
@@ -1880,7 +1879,6 @@
         "url": "iran-ai-index-2024.pdf",
         "year": "1403",
         "tags": [
-            "ai",
             "1403"
         ]
     },
@@ -2423,7 +2421,7 @@
         "url": "digiexpress-1403.pdf",
         "year": "1403",
         "tags": [
-            "digiexpress",
+            "logistic",
             "1403"
         ]
     },
@@ -2494,6 +2492,40 @@
             "yektanet",
             "war",
             "1404"
+        ]
+    },
+    {
+        "title": "Hamrah Mechanic 1403",
+        "url": "hamrah-mechanic-1403.pdf",
+        "year": "1403",
+        "tags": [
+            "1403"
+        ]
+    },
+    {
+        "title": "Meligold 1404",
+        "url": "meligold-1404.pdf",
+        "year": "1404",
+        "tags": [
+            "meligold",
+            "1404"
+        ]
+    },
+    {
+        "title": "Postex 1404",
+        "url": "postex-1404.pdf",
+        "year": "1404",
+        "tags": [
+            "logistic",
+            "1404"
+        ]
+    },
+    {
+        "title": "Risman 1403",
+        "url": "risman-1403.pdf",
+        "year": "1403",
+        "tags": [
+            "1403"
         ]
     }
 ]
