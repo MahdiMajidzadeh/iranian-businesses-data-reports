@@ -3,6 +3,16 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+// Escape HTML special characters to prevent XSS from report data
+function escapeHtml(string) {
+    return String(string)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
 // Load JSON data and display with Flux.dev components
 async function loadData() {
   try {
@@ -186,19 +196,27 @@ async function loadData() {
             const cardContainer = document.createElement('div');
             cardContainer.className = 'report-card';
             
-            // Create card content
+            // Build download URL, encoding the filename safely
+            const downloadUrl = `https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/${encodeURIComponent(item.url)}?raw=true`;
+            const tagText = item.tags
+                .filter(tag => !/^\d{4}$/.test(tag))
+                .map(tag => capitalizeFirstLetter(tag))
+                .join(', ');
+
+            // Create card content (all report-derived values are HTML-escaped)
             cardContainer.innerHTML = `
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">${item.title}</h3>
-                        <span class="card-year">Year: ${item.year}</span>
+                        <h3 class="card-title">${escapeHtml(item.title)}</h3>
+                        <span class="card-year">Year: ${escapeHtml(item.year)}</span>
                     </div>
                     <div class="card-body">
-                        <p class="card-tags">tags: ${item.tags.filter(tag => !/^\d{4}$/.test(tag)).map(tag => capitalizeFirstLetter(tag)).join(', ')}</p>
+                        <p class="card-tags">tags: ${escapeHtml(tagText)}</p>
                     </div>
                     <div class="card-footer">
-                        <a href="https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports/blob/main/reports/${item.url}?raw=true"
+                        <a href="${escapeHtml(downloadUrl)}"
                            target="_blank"
+                           rel="noopener"
                            class="btn btn-primary btn-sm">
                             Download Report
                         </a>
