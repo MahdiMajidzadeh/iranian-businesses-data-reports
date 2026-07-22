@@ -3,7 +3,6 @@
 // ============================================================
 
 const REPO = "https://github.com/MahdiMajidzadeh/iranian-businesses-data-reports";
-const YEAR_RE = /^\d{4}$/;
 const TAG_VISIBLE_LIMIT = 14;
 
 // ---- helpers ----
@@ -19,10 +18,6 @@ function escapeHtml(string) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
-}
-
-function categoryTags(item) {
-  return item.tags.filter((tag) => !YEAR_RE.test(tag));
 }
 
 // ---- theme ----
@@ -96,10 +91,8 @@ async function loadData() {
     yearSelect.appendChild(option);
   });
 
-  // Unique category tags (year values excluded), sorted
-  const allTags = [
-    ...new Set(data.flatMap((item) => item.tags).filter((tag) => !YEAR_RE.test(tag))),
-  ].sort();
+  // Unique category tags, sorted
+  const allTags = [...new Set(data.flatMap((item) => item.tags))].sort();
 
   function getFiltered() {
     const q = searchInput.value.trim().toLowerCase();
@@ -114,7 +107,7 @@ async function loadData() {
           " " +
           item.year +
           " " +
-          categoryTags(item).join(" ")
+          item.tags.join(" ")
         ).toLowerCase();
         if (!hay.includes(q)) return false;
       }
@@ -182,7 +175,7 @@ async function loadData() {
     titleList.innerHTML = items
       .map((item) => {
         const downloadUrl = `${REPO}/blob/main/reports/${encodeURIComponent(item.url)}?raw=true`;
-        const tags = categoryTags(item);
+        const tags = item.tags;
         const tagHtml = tags
           .map(
             (t, i) =>
@@ -191,6 +184,8 @@ async function loadData() {
               }</span>`
           )
           .join("");
+        // Omit the tags row entirely for uncategorized reports (no dead gap).
+        const tagsBlock = tags.length ? `<div class="card-tags">${tagHtml}</div>` : "";
 
         return `
           <article class="report-card">
@@ -199,7 +194,7 @@ async function loadData() {
               <span class="pdf-badge">PDF</span>
             </div>
             <h3 class="card-title">${escapeHtml(item.title)}</h3>
-            <div class="card-tags">${tagHtml}</div>
+            ${tagsBlock}
             <a href="${escapeHtml(downloadUrl)}" target="_blank" rel="noopener" class="download-btn">
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8m0 0 3-3M8 10 5 7"/><path d="M2.5 11v1.5A1.5 1.5 0 0 0 4 14h8a1.5 1.5 0 0 0 1.5-1.5V11"/></svg>
               Download Report

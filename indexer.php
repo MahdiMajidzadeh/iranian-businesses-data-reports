@@ -22,8 +22,11 @@ function readFilesAndCreateJSON($directory) {
             // Extract year from filename
             $year = preg_match('/(\d{4})/', $fileName, $matches) ? $matches[1] : '';
 
-            // Create tags array
-            $tags = explode('-', $fileName);
+            // Create tags array (exclude the 4-digit year token — it lives in 'year')
+            $tags = array_values(array_filter(
+                explode('-', $fileName),
+                function ($t) { return !preg_match('/^\d{4}$/', $t); }
+            ));
 
             // Check if the 'url' already exists in the existing data
             if (!isset($existingUrls[$file])) {
