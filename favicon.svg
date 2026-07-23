@@ -1,8 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Iranian Business Reports">
-  <rect width="32" height="32" rx="7" fill="#3b6fde"/>
-  <g fill="#ffffff">
-    <rect x="8" y="17" width="4" height="7" rx="1.2"/>
-    <rect x="14" y="13" width="4" height="11" rx="1.2"/>
-    <rect x="20" y="9" width="4" height="15" rx="1.2"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Iranian Business Reports" role="img" viewBox="0 0 32 32"><rect width="32" height="32" fill="#3b6fde" rx="7"/><g fill="#fff"><rect width="4" height="7" x="8" y="17" rx="1.2"/><rect width="4" height="11" x="14" y="13" rx="1.2"/><rect width="4" height="15" x="20" y="9" rx="1.2"/></g></svg>
