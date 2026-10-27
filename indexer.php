@@ -14,8 +14,8 @@ function readFilesAndCreateJSON($directory) {
     // Create an associative array for quick lookup by 'url'
     $existingUrls = array_column($jsonData, null, 'url');
 
-    foreach ($files as $file) {
-        if ($file != '.' && $file != '..') {
+        foreach ($files as $file) {
+            if ($file != '.' && $file != '..' && pathinfo($file, PATHINFO_EXTENSION) === 'pdf') {
             $filePath = $directory . '/' . $file;
             $fileName = basename($file, '.pdf'); // Remove extension
 
